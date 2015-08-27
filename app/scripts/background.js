@@ -16,6 +16,12 @@ var check = function(){
 	$.get(newit).then(function(){
 		console.info('found one', arguments);
 		chrome.browserAction.setBadgeText({text: 'New'});
+		chrome.notifications.create("one",{
+			type: "basic",
+			title: "Neuer Stundenplan für KW: "+kw[1],
+			message: "Es gibt nen neuen Plan",
+			iconUrl: chrome.extension.getURL("images/icon-128.png")
+		});
 		window.localStorage.last = newit;
 	},function(){
 		console.info('found nothing');
