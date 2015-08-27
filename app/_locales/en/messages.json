@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "ibbext",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "IBB Tools",
+    "description": "The description of the application"
+  }
+}

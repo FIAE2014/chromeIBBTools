@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link href="styles/main.css" rel="stylesheet">
+    <!-- endbuild -->
+    <link href="bower_components/material-design-lite/material.css" rel="stylesheet">
+  </head>
+  <body>
+<!--   <style>
+.demo-card-wide.mdl-card {
+  width: 320px;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+</style> -->
+<!--       <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Welcome</h2>
+      </div>
+      <div class="mdl-card__supporting-text" id="test">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Mauris sagittis pellentesque lacus eleifend lacinia...
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Get Started
+        </a>
+      </div>
+      <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+          <i class="material-icons">share</i>
+        </button>
+      </div>
+    </div> -->
+    <!-- US_{department}_{firstyear}_{season}_{class}_{currentyear}_abKW{kw}.pdf' -->
+<div action="#">
+  <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" id="department"  placeholder="Klassenbeschreibung"/>
+    <label class="mdl-textfield__label" for="department">Klasse:</label> 
+  </div>
+  <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="number" id="firstyear" />
+    <label class="mdl-textfield__label" for="firstyear">Einstiegsjahr:</label>
+  </div> 
+  <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" id="season" pattern="([sS]ommer)|([w/W]inter)" />
+    <label class="mdl-textfield__label" for="season">Sommer/Winter:</label>
+  </div>
+   <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" id="class" />
+    <label class="mdl-textfield__label" for="class">Fachrichtung Bspw.: FIAE:</label>
+  </div>
+      <button id="send" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      get it!
+    </button>
+</div>
+    <br>
+    <a href="" id="linkit" target="blank">Your Link</a>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/material-design-lite/material.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- build:js scripts/popup.js -->
+    <script src="scripts/popup.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>
