@@ -14,6 +14,11 @@
   <body>
 <div action="#">
   <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" id="experimental"  />
+    <label class="mdl-textfield__label" for="experimental">(Experimental) Old Filename:</label> 
+  </div>
+  <p><b>OR</b></p>
+  <div class="mdl-textfield mdl-js-textfield">
     <input class="mdl-textfield__input" type="text" id="department"  placeholder="Klassenbeschreibung"/>
     <label class="mdl-textfield__label" for="department">Klasse:</label> 
   </div>
@@ -21,8 +26,8 @@
     <input class="mdl-textfield__input" type="number" id="firstyear" />
     <label class="mdl-textfield__label" for="firstyear">Einstiegsjahr:</label>
   </div> 
-  <div class="mdl-textfield mdl-js-textfield">
-    <input class="mdl-textfield__input" type="text" id="season" pattern="([sS]ommer)|([w/W]inter)" />
+ <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" id="season" pattern="(Sommer)|Winter)" />
     <label class="mdl-textfield__label" for="season">Sommer/Winter:</label>
   </div>
    <div class="mdl-textfield mdl-js-textfield">
@@ -30,8 +35,9 @@
     <label class="mdl-textfield__label" for="class">Fachrichtung Bspw.: FIAE:</label>
   </div>
       <button id="send" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-      get it!
+      generate!
     </button>
+    
 </div>
     <br>
     <a href="" id="linkit" target="blank">Your Link</a>

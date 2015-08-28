@@ -1,5 +1,6 @@
 'use strict';
 var baseLink = 'http://service.viona24.com/umschueler/daten/US_{department}_{firstyear}_{season}{class}{currentyear}_abKW{kw}.pdf';
+var masterRegex = /US_([\w-]*)_(\d{4})_(Winter|Sommer)_([\w\.]*)_?(\d{4})_abKW(\d{1,2})(?:.pdf)?/g ;
 
 function saveIntoCookie(){
 	var obj =  {
@@ -11,6 +12,17 @@ function saveIntoCookie(){
 
 	window.localStorage.setItem('options' , JSON.stringify(obj));
 	window.localStorage.setItem('last' , $('#linkit').attr('href'));
+}
+
+function convertLinktoForm(evt){
+	var val = evt.target.value;
+	if (val.match(masterRegex)) {
+		var fuck = masterRegex.exec(val);
+		$('#department').val(fuck[1]);
+		$('#firstyear').val(fuck[2]);
+		$('#season').val(fuck[3]);
+		if (fuck[4]) {$('#class').val(fuck[4].slice(0,fuck[4].length-1));}
+	};
 }
 
 function KalenderWoche()
@@ -69,6 +81,10 @@ $(function(){
 	$('#linkit').hide();
 
 	$('#send').click(getPlan);
+	$('#experimental')
+		.keydown(convertLinktoForm)
+		.change(convertLinktoForm)
+		.on('paste' , convertLinktoForm);
 
 	var obj = JSON.parse(window.localStorage.getItem('options'));
 	if (obj) {
@@ -77,6 +93,8 @@ $(function(){
 		$('#season').val(obj.season);
 		$('#class').val(obj['class']);
 	}
-
+	if (window.localStorage.getItem('last')) {
+		$('#linkit').show().attr('href' , window.localStorage.getItem('last'));
+	};
 });
 
