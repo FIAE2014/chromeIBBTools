@@ -2,6 +2,8 @@
 var baseLink = 'http://service.viona24.com/umschueler/daten/US_{department}_{firstyear}_{season}{class}{currentyear}_abKW{kw}.pdf';
 var masterRegex = /US_([\w-]*)_(\d{4})_(Winter|Sommer)_([\w\.]*)_?(\d{4})_abKW(\d{1,2})(?:.pdf)?/g ;
 
+chrome.browserAction.setBadgeText({text: 'Yo'});
+
 function saveIntoCookie(){
 	var obj =  {
 		'department' : $('#department').val(),
@@ -12,6 +14,7 @@ function saveIntoCookie(){
 
 	window.localStorage.setItem('options' , JSON.stringify(obj));
 	window.localStorage.setItem('last' , $('#linkit').attr('href'));
+	window.localStorage.setItem('next' , $('#nextlink').attr('href'));
 }
 
 function convertLinktoForm(evt){
@@ -45,27 +48,34 @@ function KalenderWoche()
 
 
 var getPlan = function(){
-	var thislink = baseLink
+	var baseLinkFilled = baseLink
 		.replace('{department}' , $('#department').val())
 		.replace('{firstyear}' , $('#firstyear').val())
 		.replace('{season}' , $('#season').val())
-		.replace('{currentyear}' , new Date().getFullYear())
-		.replace('{kw}' , KalenderWoche());
+		.replace('{currentyear}' , new Date().getFullYear());
+
+	var thisWeek = baseLinkFilled.replace('{kw}' , KalenderWoche());
+	var nextWeek = baseLinkFilled.replace('{kw}' , KalenderWoche()+1);
+
 
 	if ($('#class').val()) {
-		thislink = thislink.replace('{class}' , '_'+$('#class').val()+'_');
+		thisWeek = thisWeek.replace('{class}' , '_'+$('#class').val()+'_');
 	}else{
-		thislink = thislink.replace('{class}' , '_');
+		thisWeek = thisWeek.replace('{class}' , '_');
 	}
 
 
-	$.get(thislink).then(function(data){
-		console.log(data);
-		$('#linkit').show().attr('href' , thislink);
+	$.get(thisWeek).then(function(data){
+		$('#linkit').show().attr('href' , thisWeek);
+		$('#fakeform').hide();
 		saveIntoCookie();
 	}, function(){
 		if (window.localStorage.options) {delete window.localStorage.options;}
-		$('#linkit').show().html('Plan not found: '+thislink);
+		$('#linkit').show().html('Plan not found: '+thisWeek);
+	});
+
+	$.get(nextWeek).then(function(data){
+		$('#nextlink').show().attr('href' , nextWeek);
 	});
 };
 
@@ -78,8 +88,10 @@ var getPlan = function(){
 
 
 $(function(){
-	$('#linkit').hide();
-
+	$('#linkit, #nextlink').hide();
+	$('#setup').click(function(event) {
+		$('#fakeform').show();
+	});
 	$('#send').click(getPlan);
 	$('#experimental')
 		.keydown(convertLinktoForm)
@@ -93,8 +105,9 @@ $(function(){
 		$('#season').val(obj.season);
 		$('#class').val(obj['class']);
 	}
-	if (window.localStorage.getItem('last')) {
-		$('#linkit').show().attr('href' , window.localStorage.getItem('last'));
-	};
+
+	if (window.localStorage.getItem('last')){$('#linkit').show().attr('href' , window.localStorage.getItem('last')); $('#fakeform').hide();};
+	if (window.localStorage.getItem('next')) $('#nextlink').show().attr('href' , window.localStorage.getItem('next'));
+
 });
 

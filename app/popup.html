@@ -12,7 +12,7 @@
     <link href="bower_components/material-design-lite/material.css" rel="stylesheet">
   </head>
   <body>
-<div action="#">
+<div id="fakeform" action="#">
   <div class="mdl-textfield mdl-js-textfield">
     <input class="mdl-textfield__input" type="text" id="experimental"  />
     <label class="mdl-textfield__label" for="experimental">(Experimental) Old Filename:</label> 
@@ -37,10 +37,23 @@
       <button id="send" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
       generate!
     </button>
-    
 </div>
-    <br>
-    <a href="" id="linkit" target="blank">Your Link</a>
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Links:</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <a href="#" id="setup">Change Setup?</a>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"href="" id="linkit">This Week</a>
+  </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="" id="nextlink">Next Week</a>
+  </div>
+
+</div>
+
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
